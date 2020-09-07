@@ -1,0 +1,20 @@
+@mixin font-face($font-name, $font-family) {
+	@font-face {
+	    font-family: $font-family;
+	    src: url('../font/'+$font-name+'.eot');
+	    src: url('../font/'+$font-name+'.eot?#iefix') format('embedded-opentype'),
+	         // url('../font/'+$font-name+'.woff2') format('woff2'),
+	         url('../font/'+$font-name+'.woff') format('woff'),
+	         url('../font/'+$font-name+'.ttf') format('truetype'),
+	         url('../font/'+$font-name+'.svg#pt_sansbold_italic') format('svg');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+}
+
+@include font-face('open-sans-fontfacekit/web fonts/opensans_bolditalic_macroman/OpenSans-BoldItalic-webfont','open_sansbold_italic');
+@include font-face('open-sans-fontfacekit/web fonts/opensans_bold_macroman/OpenSans-Bold-webfont','open_sansbold');
+@include font-face('open-sans-fontfacekit/web fonts/opensans_italic_macroman/OpenSans-Italic-webfont','open_sansitalic');
+@include font-face('open-sans-fontfacekit/web fonts/opensans_regular_macroman/OpenSans-Regular-webfont','open_sansregular');
+@include font-face('open-sans-fontfacekit/web fonts/opensans_semibolditalic_macroman/OpenSans-SemiboldItalic-webfont','open_sanssemibold_italic');
+@include font-face('open-sans-fontfacekit/web fonts/opensans_semibold_macroman/OpenSans-Semibold-webfont','open_sanssemibold');

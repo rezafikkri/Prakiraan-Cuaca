@@ -1,0 +1,103 @@
+/* main */
+.card {
+	position: relative;
+	border: $border-gray;
+	border-radius: $border-radius;
+	transition: .2s ease-in-out;
+
+	&:hover {
+		z-index: 1;
+		box-shadow: 0 5px 10px rgba(0,0,0,.12);
+	}
+
+	&__primary {
+		text-align: center;
+		padding: $padding;
+	}
+
+	&__header h3, &__header p {
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	&__header h3 {
+		margin-bottom: 5px;
+		font-family: open_sanssemibold, Arial, sans-serif;
+	}
+
+	&__header p {
+		font-size: 1.1rem;
+	}
+
+	&__status {
+		display: flex;
+		justify-content: center;
+		margin-top: 1.5rem;
+
+		@media (max-width: 365px) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	&__icon {
+		flex: 1;
+		text-align: right;
+		padding: 5px;
+
+		@media (max-width: 365px) { 
+			text-align: center; 
+
+			svg { width: 140px; }
+		}
+	}
+
+	&__suhu {
+		flex: 1.1;
+		text-align: left;
+		padding: 9px 5px;
+
+		@media (max-width: 365px) { text-align: center; width: 50%; }
+
+		h1, h5 {
+			display: inline-block;
+			margin: 0;
+		}
+
+		h1 {
+			font-family: open_sanssemibold, Arial, sans-serif;
+			font-size: 4rem;
+			float: left;
+			padding-right: 5px;
+		}
+
+		h5 {
+			font-weight: normal;
+			margin-top: 10px;
+
+			&:first-child {
+				margin-left: 100px;
+			}
+		}
+	}
+
+	&__secondary table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 1.5rem;
+	}
+
+	&__secondary table tr td,
+	&__secondary table tr th {
+		border-top: 1px dashed #f4f4f4;
+		text-align: left;
+		padding: 15px 20px;
+		background-color: #fcfcfc;
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+	}
+
+	&__secondary table tr th {
+		font-family: open_sanssemibold, Arial, sans-serif;
+	}
+}

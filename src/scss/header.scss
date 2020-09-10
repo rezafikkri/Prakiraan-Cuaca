@@ -1,0 +1,146 @@
+/* header */
+.select-custom {
+	position: relative;
+	z-index: 2;
+
+	input {
+		border: $border-gray;
+		border-radius: $border-radius;
+		width: 100%;
+		padding: 11px 20px;
+		padding-right: 60px;
+		background-color: #fcfcfc;
+		pointer-events: none;
+
+		&::placeholder {
+			color: #9e9e9e;
+		}
+	}
+
+	&__btn {
+		position: absolute;
+		top: 1px;
+		bottom: 1px;
+		right: 1px;
+		display: inline-block;
+		background-color: $background-btn;
+		border: $border-gray;
+		border-top: none;
+		border-right: none;
+		border-bottom: none;
+		border-top-right-radius: $border-radius;
+		border-bottom-right-radius: $border-radius;
+		padding: 12px 14px;
+		transition: .1s ease-in-out;
+
+		&:hover {
+			background-color: $background-btn-hover;
+		}
+
+		svg {
+			vertical-align: text-bottom;
+		}
+	}
+
+	&__option {
+		position: absolute;
+		margin-top: 5px;
+		background-color: #fcfcfc;
+		width: 100%;
+		border: $border-gray;
+		border-radius: $border-radius;
+		max-height: 300px;
+		overflow: hidden;
+		display: none; 
+
+		&--d-block {
+			display: block;
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0; 
+			overflow-x: auto;
+			max-height: 300px;
+		}
+
+		a {
+			display: block;
+			color: #0d6efd;
+			text-decoration: none;
+			padding: $padding;
+			border-bottom: 1px dashed #f4f4f4;
+
+			&:hover {
+				color: #024dbc;
+			}
+		}
+	}	
+}
+
+.btn-show {
+	margin-top: 1rem;
+	line-height: 1.4;
+
+	background-color: #ffffdb;
+	display: block;
+	text-align: center;
+	border-radius: $border-radius;
+	padding: $padding;
+	text-decoration: none;
+	color: #333;
+	border: 1px solid #efefc4;
+	transition: background-color .1s ease-in-out;
+
+	&:hover {
+		background-color: #ffff96;
+	}
+
+	svg {
+		vertical-align: middle;
+		margin-left: 5px;
+	}
+}
+
+.btn-loading {
+	position: relative;
+}
+
+.loading {
+	background-color: rgba(252,252,252,.9);
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	border-radius: $border-radius;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
+
+	.loading--d-block {
+		display: block;
+	}
+
+	&::after {
+		content: "";
+		width: 15px;
+		height: 15px;
+		border-width: 5px;
+		border-style: solid;
+		border-radius: 50%;
+		border-color: #555 transparent #555 transparent;
+		animation: loading 1.5s linear infinite;
+	}
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

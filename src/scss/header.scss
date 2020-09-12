@@ -1,13 +1,20 @@
 /* header */
 .select-custom {
 	position: relative;
-	z-index: 2;
+	
+	&:first-child {
+		z-index: 3;
+	}
+
+	&:last-child {
+		z-index: 2;
+	}
 
 	input {
 		border: $border-gray;
 		border-radius: $border-radius;
 		width: 100%;
-		padding: 11px 20px;
+		padding: 10.5px 20px;
 		padding-right: 60px;
 		background-color: #fcfcfc;
 		pointer-events: none;
@@ -30,7 +37,7 @@
 		border-bottom: none;
 		border-top-right-radius: $border-radius;
 		border-bottom-right-radius: $border-radius;
-		padding: 12px 14px;
+		padding: 10px 14px;
 		transition: .1s ease-in-out;
 
 		&:hover {

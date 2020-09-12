@@ -81,6 +81,15 @@
 		</div>
 	</div><!-- select-custom -->
 
+	<div class="select-custom mt">
+		<input type="text" name="kabupaten" placeholder="Pilih Kabupaten atau Kota ..." autocomplete="off">
+		<a href="#" class="select-custom__btn">
+			<svg width="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="#333" xmlns="http://www.w3.org/2000/svg">
+				 <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+			</svg>
+		</a>
+	</div><!-- select-custom -->
+
 	<div class="btn-loading">
 		<a href="#" class="btn-show">Lihat Prakiraan Cuaca Hari Ini</a>
 		<div class="loading"></div>
@@ -91,7 +100,10 @@
 		<div class="card__primary">
 			<div class="card__header">
 				<h3>Provinsi Bengkulu</h3>
-				<p>Selasa 15.00</p>
+				<select name="dateTime" autocomplete="off">
+					<option>Selasa 15.00</option>
+					<option>Rabu 15.00</option>
+				</select>
 				<p>Hujan Lebat</p>
 			</div>
 			<div class="card__status">

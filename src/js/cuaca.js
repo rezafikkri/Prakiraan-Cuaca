@@ -1,3 +1,5 @@
+import { XmlToJson } from './XmlToJson.es6.js';
+
 const selectCustomOption = document.querySelector("div.select-custom__option");
 const inputProvinsi = document.querySelector('input[name="provinsi"]');
 
@@ -24,10 +26,21 @@ const btnShow = document.querySelector('a.btn-show');
 btnShow.addEventListener('click', (e) => {
 	e.preventDefault();
 
+	// cek provinsi dipilih atau tidak
 	if(inputProvinsi.value) {
-		fetch(`https://data.bmkg.go.id/datamkg/MEWS/DigitalForecast/DigitalForecast-${inputProvinsi.value.replace(/\s/g,'')}.xml`)
-		.then((response) => {
-			console.log(response);
+
+		
+
+		fetch('get-api.php?provinsi='+inputProvinsi.value.replace(/\s/g,''))
+		.then(response => {
+			return response.text();
+		})
+		.then(response => {
+			const json = new XmlToJson(response);
+			for(const p of json.data.forecast.area) {
+				console.log(p.name[1].text);
+			}
+			console.log(json);
 		})
 	}
 });

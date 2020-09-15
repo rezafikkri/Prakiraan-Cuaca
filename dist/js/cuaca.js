@@ -397,6 +397,10 @@
   var inputProvinsi = document.querySelector('input[name="provinsi"]');
   var inputKabupatenKota = document.querySelector('input[name="kabupatenKota"]');
   var cardStatusSuhu = document.querySelector('.card__status .card__suhu');
+  var cardHeaderSelect = document.querySelector('.card__header select');
+  var cardHeaderp = document.querySelector('.card__header p');
+  var cardStatusIcon = document.querySelector('.card__status .card__icon');
+  var cardSecondary = document.querySelector('.card__secondary table');
   /** select custom **/
 
   document.querySelector('#btnProvinsi').addEventListener('click', function (e) {
@@ -444,7 +448,7 @@
       inputProvinsi.oldValue = inputProvinsi.value; // buat dan append list kabupaten atau kota
 
       var provinsi = inputProvinsi.value;
-      var hasil = '';
+      var hasil = '<li><a href="#" class="kabupatenKota" data-kabupaten-kota=""></a></li>';
 
       var _iterator = _createForOfIteratorHelper(kabupatenKota[provinsi.replace(/\s/g, '')]),
           _step;
@@ -618,7 +622,7 @@
         var t = _step6.value;
 
         if (parseInt(dateTimeSelect) === t.datetime) {
-          suhu = "<h1>".concat(t.value[0].text, "</h1><h5><a href=\"#\" data-suhu=\"").concat(t.value[0].text, "\" class=\"card__suhuCelsius card__suhuCelsius--active\">\xB0C</a></h5><h5>|</h5><h5><a href=\"#\" data-suhu=\"").concat(t.value[1].text, "\" class=\"card__suhuFahrenheit\">\xB0F</a></h5>");
+          suhu = "<h1>".concat(t.value[0].text.toString().replace('.', ','), "</h1><h5><a href=\"#\" data-suhu=\"").concat(t.value[0].text.toString().replace('.', ','), "\" class=\"card__suhuCelsius card__suhuCelsius--active\">\xB0C</a></h5><h5>|</h5><h5><a href=\"#\" data-suhu=\"").concat(t.value[1].text.toString().replace('.', ','), "\" class=\"card__suhuFahrenheit\">\xB0F</a></h5>");
           break;
         }
       }
@@ -721,7 +725,7 @@
         var ws = _step8.value;
 
         if (parseInt(dateTimeSelect) === ws.datetime) {
-          hasil += "<tr><th>Kecepatan Angin</th><td id=\"ws\" data-kph=\"".concat(ws.value[2].text.toFixed(2), " ").concat(ws.value[2].unit, "\" data-mph=\"").concat(ws.value[1].text.toFixed(2), " ").concat(ws.value[1].unit, "\">").concat(ws.value[2].text.toFixed(2), " ").concat(ws.value[2].unit, "</td></tr>");
+          hasil += "<tr><th>Kecepatan Angin</th><td id=\"ws\" data-kph=\"".concat(ws.value[2].text.toFixed(2).replace('.', ','), " ").concat(ws.value[2].unit, "\" data-mph=\"").concat(ws.value[1].text.toFixed(2).replace('.', ','), " ").concat(ws.value[1].unit, "\">").concat(ws.value[2].text.toFixed(2).replace('.', ','), " ").concat(ws.value[2].unit, "</td></tr>");
           break;
         }
       }
@@ -774,11 +778,7 @@
       var json = new XmlToJson(response);
       if (json.data === undefined) throw new Error("Cek koneksi internet kamu!");
       console.log(json);
-      var cardHeaderh3 = document.querySelector('.card__header h4');
-      var cardHeaderSelect = document.querySelector('.card__header select');
-      var cardHeaderp = document.querySelector('.card__header p');
-      var cardStatusIcon = document.querySelector('.card__status .card__icon');
-      var cardSecondary = document.querySelector('.card__secondary table'); // karena function getCuaca() itu general, bisa digunakan untuk mengambil data cuaca kabupaten berdasarkan parameter provinsi atau data cuaca provinsi berdasarkan parameter Indonesia, maka kita perlu cek apakah function getCuaca() digunakan untuk mengambil data cuaca kabupaten atau provinsi.
+      var cardHeaderh3 = document.querySelector('.card__header h4'); // karena function getCuaca() itu general, bisa digunakan untuk mengambil data cuaca kabupaten berdasarkan parameter provinsi atau data cuaca provinsi berdasarkan parameter Indonesia, maka kita perlu cek apakah function getCuaca() digunakan untuk mengambil data cuaca kabupaten atau provinsi.
 
       if (paramGetApi !== 'Indonesia') {
         // cek paramGetDataCuacaJson, jika terdapat parameter description
@@ -919,6 +919,19 @@
   });
   /** tampil data cuaca berdasarkan dataTime select **/
 
+  cardHeaderSelect.addEventListener('change', function (e) {
+    var parameterCuaca = JSON.parse(localStorage.getItem('parameterCuaca')); // jika parameterCuaca ada di localStorage
+
+    if (parameterCuaca !== null) {
+      // maka tampilkan ke layar
+      var weatherPrimaryInfo = generateWeatherPrimaryInfo(parameterCuaca[6].timerange, parameterCuaca[5].timerange, cardHeaderSelect, weatherIcon);
+      cardHeaderp.innerHTML = weatherPrimaryInfo.textCuaca;
+      cardStatusIcon.innerHTML = weatherPrimaryInfo.iconCuaca;
+      cardStatusSuhu.innerHTML = weatherPrimaryInfo.suhu;
+      var weatherScondaryInfo = generateWeatherScondaryInfo(parameterCuaca[0].timerange, parameterCuaca[8].timerange, parameterCuaca[7].timerange, cardHeaderSelect);
+      cardSecondary.innerHTML = weatherScondaryInfo;
+    }
+  });
   /** alert **/
 
   document.querySelector('.alert__action a').addEventListener('click', function (e) {

@@ -7,6 +7,10 @@ const selectKabupatenKota = document.querySelector("#selectKabupatenKota");
 const inputProvinsi = document.querySelector('input[name="provinsi"]');
 const inputKabupatenKota = document.querySelector('input[name="kabupatenKota"]');
 const cardStatusSuhu = document.querySelector('.card__status .card__suhu');
+const cardHeaderSelect = document.querySelector('.card__header select');
+const cardHeaderp = document.querySelector('.card__header p');
+const cardStatusIcon = document.querySelector('.card__status .card__icon');
+const cardSecondary = document.querySelector('.card__secondary table');
 
 /** select custom **/
 document.querySelector('#btnProvinsi').addEventListener('click', (e) => {
@@ -56,7 +60,7 @@ function buatListKabupatenKota(inputProvinsi, inputKabupatenKota, kabupatenKota)
 
 		// buat dan append list kabupaten atau kota
 		const provinsi = inputProvinsi.value;
-		let hasil = '';
+		let hasil = '<li><a href="#" class="kabupatenKota" data-kabupaten-kota=""></a></li>';
 		for(const kb of kabupatenKota[provinsi.replace(/\s/g, '')]) {
 			// jika ada keterangan description
 			if(/^[\w\.\s]+\[description:[\s\w+]+\]$/i.test(kb)) {
@@ -151,7 +155,7 @@ function generateWeatherPrimaryInfo(timeRangeKodeCuaca, timeRangeTemperature, ca
 	}
 	for(const t of timeRangeTemperature) {
 		if(parseInt(dateTimeSelect) === t.datetime) {
-			suhu = `<h1>${t.value[0].text}</h1><h5><a href="#" data-suhu="${t.value[0].text}" class="card__suhuCelsius card__suhuCelsius--active">°C</a></h5><h5>|</h5><h5><a href="#" data-suhu="${t.value[1].text}" class="card__suhuFahrenheit">°F</a></h5>`;
+			suhu = `<h1>${t.value[0].text.toString().replace('.',',')}</h1><h5><a href="#" data-suhu="${t.value[0].text.toString().replace('.',',')}" class="card__suhuCelsius card__suhuCelsius--active">°C</a></h5><h5>|</h5><h5><a href="#" data-suhu="${t.value[1].text.toString().replace('.',',')}" class="card__suhuFahrenheit">°F</a></h5>`;
 			break;
 		} 
 	}
@@ -192,7 +196,7 @@ function generateWeatherScondaryInfo(timeRangeHumidity, timeRangeWindSpeed, time
 	}
 	for(const ws of timeRangeWindSpeed) {
 		if(parseInt(dateTimeSelect) === ws.datetime) {
-			hasil += `<tr><th>Kecepatan Angin</th><td id="ws" data-kph="${ws.value[2].text.toFixed(2)} ${ws.value[2].unit}" data-mph="${ws.value[1].text.toFixed(2)} ${ws.value[1].unit}">${ws.value[2].text.toFixed(2)} ${ws.value[2].unit}</td></tr>`;
+			hasil += `<tr><th>Kecepatan Angin</th><td id="ws" data-kph="${ws.value[2].text.toFixed(2).replace('.',',')} ${ws.value[2].unit}" data-mph="${ws.value[1].text.toFixed(2).replace('.',',')} ${ws.value[1].unit}">${ws.value[2].text.toFixed(2).replace('.',',')} ${ws.value[2].unit}</td></tr>`;
 			break;
 		}
 	}
@@ -235,10 +239,6 @@ function getCuaca(paramGetApi, loading, paramGetDataCuacaJson) {
 		console.log(json);
 
 		const cardHeaderh3 = document.querySelector('.card__header h4');
-		const cardHeaderSelect = document.querySelector('.card__header select');
-		const cardHeaderp = document.querySelector('.card__header p');
-		const cardStatusIcon = document.querySelector('.card__status .card__icon');
-		const cardSecondary = document.querySelector('.card__secondary table');
 
 		// karena function getCuaca() itu general, bisa digunakan untuk mengambil data cuaca kabupaten berdasarkan parameter provinsi atau data cuaca provinsi berdasarkan parameter Indonesia, maka kita perlu cek apakah function getCuaca() digunakan untuk mengambil data cuaca kabupaten atau provinsi.
 		if(paramGetApi !== 'Indonesia') {
@@ -361,6 +361,21 @@ btnShow.addEventListener('click', (e) => {
 });
 
 /** tampil data cuaca berdasarkan dataTime select **/
+cardHeaderSelect.addEventListener('change', (e) => {
+	const parameterCuaca = JSON.parse(localStorage.getItem('parameterCuaca'));
+	// jika parameterCuaca ada di localStorage
+	if(parameterCuaca !== null) {
+
+		// maka tampilkan ke layar
+		const weatherPrimaryInfo = generateWeatherPrimaryInfo(parameterCuaca[6].timerange, parameterCuaca[5].timerange, cardHeaderSelect, weatherIcon);
+		cardHeaderp.innerHTML = weatherPrimaryInfo.textCuaca;
+		cardStatusIcon.innerHTML = weatherPrimaryInfo.iconCuaca;
+		cardStatusSuhu.innerHTML = weatherPrimaryInfo.suhu;
+
+		const weatherScondaryInfo = generateWeatherScondaryInfo(parameterCuaca[0].timerange, parameterCuaca[8].timerange, parameterCuaca[7].timerange, cardHeaderSelect);
+		cardSecondary.innerHTML = weatherScondaryInfo;
+	}
+});
 
 /** alert **/
 document.querySelector('.alert__action a').addEventListener('click', (e) => {

@@ -13,10 +13,14 @@
 	display: none;
 
 	&--d-flex {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
 	}
 
 	&__text {
+		-webkit-box-flex: 1;
+		-ms-flex: 1;
 		flex: 1;
 
 		p {
@@ -25,7 +29,9 @@
 	}
 
 	&__action {
-		flex: 0 0 30px;
+		-ms-flex-preferred-size: 30px;
+		flex-basis: 30px;
+
 		font-weight: bold;
 		font-size: 1.1rem;
 		text-align: right;

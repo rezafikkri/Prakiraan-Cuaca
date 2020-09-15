@@ -44,6 +44,10 @@ header, main {
 	margin-top: 2rem;
 }
 
+strong {
+	font-family: open_sansbold, Arial, sans-serif;
+}
+
 @import 'header.scss';
 @import 'main.scss';
 @import 'footer.scss';

@@ -396,6 +396,7 @@
   var selectKabupatenKota = document.querySelector("#selectKabupatenKota");
   var inputProvinsi = document.querySelector('input[name="provinsi"]');
   var inputKabupatenKota = document.querySelector('input[name="kabupatenKota"]');
+  var cardStatusSuhu = document.querySelector('.card__status .card__suhu');
   /** select custom **/
 
   document.querySelector('#btnProvinsi').addEventListener('click', function (e) {
@@ -617,7 +618,7 @@
         var t = _step6.value;
 
         if (parseInt(dateTimeSelect) === t.datetime) {
-          suhu = "<h1>".concat(t.value[0].text, "</h1><h5><a href=\"#\" data-suhu=\"").concat(t.value[0].text, "\" id=\"suhuCelsius\" class=\"card__suhu--active\">\xB0C</a></h5><h5>|</h5><h5><a href=\"#\" data-suhu=\"").concat(t.value[1].text, "\" id=\"suhuFahrenheit\">\xB0F</a></h5>");
+          suhu = "<h1>".concat(t.value[0].text, "</h1><h5><a href=\"#\" data-suhu=\"").concat(t.value[0].text, "\" class=\"card__suhuCelsius card__suhuCelsius--active\">\xB0C</a></h5><h5>|</h5><h5><a href=\"#\" data-suhu=\"").concat(t.value[1].text, "\" class=\"card__suhuFahrenheit\">\xB0F</a></h5>");
           break;
         }
       }
@@ -720,7 +721,7 @@
         var ws = _step8.value;
 
         if (parseInt(dateTimeSelect) === ws.datetime) {
-          hasil += "<tr><th id=\"ws\" data-kph=\"".concat(ws.value[2].text.toFixed(2), " ").concat(ws.value[2].unit, "\" data-mph=\"").concat(ws.value[1].text.toFixed(2), " ").concat(ws.value[1].unit, "\">Kecepatan Angin</th><td>").concat(ws.value[1].text.toFixed(2), " ").concat(ws.value[1].unit, "</td></tr>");
+          hasil += "<tr><th>Kecepatan Angin</th><td id=\"ws\" data-kph=\"".concat(ws.value[2].text.toFixed(2), " ").concat(ws.value[2].unit, "\" data-mph=\"").concat(ws.value[1].text.toFixed(2), " ").concat(ws.value[1].unit, "\">").concat(ws.value[2].text.toFixed(2), " ").concat(ws.value[2].unit, "</td></tr>");
           break;
         }
       }
@@ -751,6 +752,12 @@
     return hasil;
   }
 
+  function showCardPrimaryCardSecondary(cardInitialMessage) {
+    cardInitialMessage.classList.remove('card__initial-message--d-block');
+    document.querySelector('.card__primary').classList.remove('card__primary--d-none');
+    document.querySelector('.card__secondary').classList.remove('card__secondary--d-none');
+  }
+
   function getCuaca(paramGetApi, loading, paramGetDataCuacaJson) {
     // loading
     loading.classList.add("loading--d-flex");
@@ -759,19 +766,18 @@
       loading.classList.remove("loading--d-flex");
     }).then(function (response) {
       if (!response.ok) {
-        throw new Error('Cek koneksi internet kamu');
+        throw new Error("Cek koneksi internet kamu!");
       }
 
       return response.text();
     }).then(function (response) {
       var json = new XmlToJson(response);
-      if (json.data === undefined) throw new Error('Cek koneksi internet kamu');
+      if (json.data === undefined) throw new Error("Cek koneksi internet kamu!");
       console.log(json);
       var cardHeaderh3 = document.querySelector('.card__header h4');
       var cardHeaderSelect = document.querySelector('.card__header select');
       var cardHeaderp = document.querySelector('.card__header p');
       var cardStatusIcon = document.querySelector('.card__status .card__icon');
-      var cardStatusSuhu = document.querySelector('.card__status .card__suhu');
       var cardSecondary = document.querySelector('.card__secondary table'); // karena function getCuaca() itu general, bisa digunakan untuk mengambil data cuaca kabupaten berdasarkan parameter provinsi atau data cuaca provinsi berdasarkan parameter Indonesia, maka kita perlu cek apakah function getCuaca() digunakan untuk mengambil data cuaca kabupaten atau provinsi.
 
       if (paramGetApi !== 'Indonesia') {
@@ -795,10 +801,13 @@
                 cardStatusIcon.innerHTML = weatherPrimaryInfo.iconCuaca;
                 cardStatusSuhu.innerHTML = weatherPrimaryInfo.suhu;
                 var weatherScondaryInfo = generateWeatherScondaryInfo(r.parameter[0].timerange, r.parameter[8].timerange, r.parameter[7].timerange, cardHeaderSelect);
-                cardSecondary.innerHTML = weatherScondaryInfo; ///// simpan isi attribute parameter di localStorage
+                cardSecondary.innerHTML = weatherScondaryInfo; ///// karena default ketika halaman pertama kali diload card primary dan card secondary di hide, maka kita perlu show keduanya
+
+                var cardInitialMessage = document.querySelector('.card__initial-message');
+                if (cardInitialMessage.classList.contains('card__initial-message--d-block')) showCardPrimaryCardSecondary(cardInitialMessage); ///// simpan isi attribute parameter di localStorage
 
                 localStorage.setItem('parameterCuaca', JSON.stringify(r.parameter));
-                break;
+                return true;
               }
             }
           } catch (err) {
@@ -830,10 +839,14 @@
 
                   var _weatherScondaryInfo = generateWeatherScondaryInfo(_r.parameter[0].timerange, _r.parameter[8].timerange, _r.parameter[7].timerange, cardHeaderSelect);
 
-                  cardSecondary.innerHTML = _weatherScondaryInfo; ///// simpan isi attribute parameter di localStorage
+                  cardSecondary.innerHTML = _weatherScondaryInfo; ///// karena default ketika halaman pertama kali diload card primary dan card secondary di hide, maka kita perlu show keduanya
+
+                  var _cardInitialMessage = document.querySelector('.card__initial-message');
+
+                  if (_cardInitialMessage.classList.contains('card__initial-message--d-block')) showCardPrimaryCardSecondary(_cardInitialMessage); ///// simpan isi attribute parameter di localStorage
 
                   localStorage.setItem('parameterCuaca', JSON.stringify(_r.parameter));
-                  break;
+                  return true;
                 }
               }
             } catch (err) {
@@ -865,10 +878,14 @@
 
               var _weatherScondaryInfo2 = generateWeatherScondaryInfo(_r2.parameter[0].timerange, _r2.parameter[8].timerange, _r2.parameter[7].timerange, cardHeaderSelect);
 
-              cardSecondary.innerHTML = _weatherScondaryInfo2; ///// simpan isi attribute parameter di localStorage
+              cardSecondary.innerHTML = _weatherScondaryInfo2; ///// karena default ketika halaman pertama kali diload card primary dan card secondary di hide, maka kita perlu show keduanya
+
+              var _cardInitialMessage2 = document.querySelector('.card__initial-message');
+
+              if (_cardInitialMessage2.classList.contains('card__initial-message--d-block')) showCardPrimaryCardSecondary(_cardInitialMessage2); ///// simpan isi attribute parameter di localStorage
 
               localStorage.setItem('parameterCuaca', JSON.stringify(_r2.parameter));
-              break;
+              return true;
             }
           }
         } catch (err) {
@@ -906,7 +923,36 @@
 
   document.querySelector('.alert__action a').addEventListener('click', function (e) {
     e.preventDefault();
-    e.target.parentElement.parentElement.remove();
+    e.target.parentElement.parentElement.classList.remove('alert--d-flex');
+  });
+  /** tampil suhu dalam Celsius atau Fahrenheit dan kecepatan angin dalam MPH atau KPH **/
+
+  cardStatusSuhu.addEventListener('click', function (e) {
+    var target = e.target;
+
+    if ((target.classList.contains('card__suhuCelsius') || target.classList.contains('card__suhuFahrenheit')) && !target.classList.contains('card__suhuCelsius--active') && !target.classList.contains('card__suhuFahrenheit--active')) {
+      e.preventDefault();
+      var cardSuhuCelsius = cardStatusSuhu.querySelector('a.card__suhuCelsius');
+      var cardSuhuFahrenheit = cardStatusSuhu.querySelector('a.card__suhuFahrenheit');
+      var ws = document.querySelector('.card__secondary tr td#ws');
+
+      if (cardSuhuCelsius.classList.contains('card__suhuCelsius--active')) {
+        // remove class suhu active yang ada dan tambahkan pada target
+        cardSuhuCelsius.classList.remove('card__suhuCelsius--active');
+        target.classList.add('card__suhuFahrenheit--active'); // tampil kecepatan angin dalam MPH jika suhu dalam Fahrenheit
+
+        ws.innerHTML = ws.dataset.mph;
+      } else if (cardSuhuFahrenheit.classList.contains('card__suhuFahrenheit--active')) {
+        // remove class suhu active yang ada dan tambahkan pada target
+        cardSuhuFahrenheit.classList.remove('card__suhuFahrenheit--active');
+        target.classList.add('card__suhuCelsius--active'); // tampil kecepatan angin dalam KPH jika suhu dalam Celsius
+
+        ws.innerHTML = ws.dataset.kph;
+      } // inner suhu ke h1
+
+
+      cardStatusSuhu.querySelector('h1').innerHTML = target.dataset.suhu;
+    }
   });
 
 }());

@@ -10,9 +10,22 @@
 		box-shadow: 0 5px 10px rgba(0,0,0,.12);
 	}
 
+	&__initial-message,
 	&__primary {
 		text-align: center;
 		padding: $padding;
+	}
+
+	&__initial-message {
+		display: none;
+
+		&--d-block {
+			display: block;
+		}
+	}
+
+	&__primary--d-none {
+		display: none;
 	}
 
 	&__header h4, &__header p, &__header select {
@@ -102,35 +115,43 @@
 			color: #007bff;
 			text-decoration: none;
 
-			&.card__suhu--active {
-				color: #333;
-				pointer-events: none;
-			}
-
 			&:hover {
-				color: #0056b3;
+				color: #0056b3; 
 			}
+		}
+
+		a#{&}Celsius--active,
+		a#{&}Fahrenheit--active {
+			color: #333;
+			pointer-events: none; 
 		}
 	}
 
-	&__secondary table {
-		width: 100%;
-		border-collapse: collapse;
-		margin-top: 1.5rem;
-		line-height: 1.3rem;
-	}
+	&__secondary {
 
-	&__secondary table tr td,
-	&__secondary table tr th {
-		border-top: 1px dashed #f4f4f4;
-		text-align: left;
-		padding: 15px 20px;
-		background-color: #fcfcfc;
-		border-bottom-right-radius: 10px;
-		border-bottom-left-radius: 10px;
-	}
+		&--d-none {
+			display: none;
+		}
 
-	&__secondary table tr th {
-		font-family: open_sanssemibold, Arial, sans-serif;
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 1.5rem;
+			line-height: 1.3rem;
+		}
+
+		table tr td,
+		table tr th {
+			border-top: 1px dashed #f4f4f4;
+			text-align: left;
+			padding: 15px 20px;
+			background-color: #fcfcfc;
+			border-bottom-right-radius: 10px;
+			border-bottom-left-radius: 10px;
+		}
+
+		table tr th {
+			font-family: open_sanssemibold, Arial, sans-serif;
+		}
 	}
 }

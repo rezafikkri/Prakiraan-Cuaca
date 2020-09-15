@@ -219,19 +219,19 @@ export const kabupatenKota = {
 	],
 
 	KalimantanBarat: [
-		'Kab. Bengkayang'
-		'Kab. Kapuas Hulu'
-		'Kab. Kayong Utara'
-		'Kab. Ketapang'
-		'Kab. Ngabang'
-		'Kab. Melawi'
-		'Kab. Mempawah [description: Mempawah]'
-		'Kota Pontianak'
-		'Kab. Sambas'
-		'Kab. Sanggau'
-		'Kab. Sekadau'
-		'Kota Singkawang'
-		'Kab. Sintang'
+		'Kab. Bengkayang',
+		'Kab. Kapuas Hulu',
+		'Kab. Kayong Utara',
+		'Kab. Ketapang',
+		'Kab. Ngabang',
+		'Kab. Melawi',
+		'Kab. Mempawah [description: Mempawah]',
+		'Kota Pontianak',
+		'Kab. Sambas',
+		'Kab. Sanggau',
+		'Kab. Sekadau',
+		'Kota Singkawang',
+		'Kab. Sintang',
 		'Kab. Kubu Raya [description: Sungai Raya]'
 	],
 
@@ -356,27 +356,27 @@ export const kabupatenKota = {
 	],
 
 	NusaTenggaraTimur: [	
-		'Kab. Belu'
-		'Kab. Rote Ndao'
-		'Kab. Ngada'
-		'Kab. Malaka'
-		'Kab. Manggarai Timur'
-		'Kab. Ende'
-		'Kab. Alor'
-		'Kab. Timor Tengah Utara'
-		'Kota Kupang'
-		'Kab. Manggarai Barat'
-		'Kab. Flores Timur'
-		'Kab. Lembata'
-		'Kab. Sikka'
-		'Kab. Nagekeo'
-		'Kab. Kupang'
-		'Kab. Manggarai'
-		'Kab. Sabu Raijua'
-		'Kab. Timor Tengah Selatan'
-		'Kab. Sumba Tengah'
-		'Kab. Sumba Barat'
-		'Kab. Sumba Timur'
+		'Kab. Belu',
+		'Kab. Rote Ndao',
+		'Kab. Ngada',
+		'Kab. Malaka',
+		'Kab. Manggarai Timur',
+		'Kab. Ende',
+		'Kab. Alor',
+		'Kab. Timor Tengah Utara',
+		'Kota Kupang',
+		'Kab. Manggarai Barat',
+		'Kab. Flores Timur',
+		'Kab. Lembata',
+		'Kab. Sikka',
+		'Kab. Nagekeo',
+		'Kab. Kupang',
+		'Kab. Manggarai',
+		'Kab. Sabu Raijua',
+		'Kab. Timor Tengah Selatan',
+		'Kab. Sumba Tengah',
+		'Kab. Sumba Barat',
+		'Kab. Sumba Timur',
 		'Kab. Sumba Barat Daya'
 	],
 
@@ -536,22 +536,22 @@ export const kabupatenKota = {
 	],
 
 	SumateraSelatan: [
-		'Kab. Ogan Komering Ulu'
-		'Kab. Ogan Ilir'
-		'Kab. Ogan Komering Ilir'
-		'Kab. Lahat'
-		'Kota Lubuk Linggau'
-		'Kab. Ogan Komering Ulu Timur'
-		'Kab. Ogan Komering Ulu Selatan'
-		'Kab. Muaraenim'
-		'Kab. Musi Rawas Utara'
-		'Kab. Musi Rawas'
-		'Kota Pagar Alam'
-		'Kota Palembang'
-		'Kab. Banyuasin'
-		'Kota Prabumulih'
-		'Kab. Musi Banyuasin'
-		'Kab. Penukal Abab Lematang Ilir'
+		'Kab. Ogan Komering Ulu',
+		'Kab. Ogan Ilir',
+		'Kab. Ogan Komering Ilir',
+		'Kab. Lahat',
+		'Kota Lubuk Linggau',
+		'Kab. Ogan Komering Ulu Timur',
+		'Kab. Ogan Komering Ulu Selatan',
+		'Kab. Muaraenim',
+		'Kab. Musi Rawas Utara',
+		'Kab. Musi Rawas',
+		'Kota Pagar Alam',
+		'Kota Palembang',
+		'Kab. Banyuasin',
+		'Kota Prabumulih',
+		'Kab. Musi Banyuasin',
+		'Kab. Penukal Abab Lematang Ilir',
 		'Kab. Empat Lawang'
 	],
 

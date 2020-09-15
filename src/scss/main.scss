@@ -15,18 +15,18 @@
 		padding: $padding;
 	}
 
-	&__header h3, &__header p, &__header select {
+	&__header h4, &__header p, &__header select {
 		margin: 0;
 		line-height: 1.5;
 	}
 
-	&__header h3 {
+	&__header h4 {
 		margin-bottom: 5px;
 		font-family: open_sanssemibold, Arial, sans-serif;
 	}
 
 	&__header p, &__header select {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 	}
 
 	&__header select {
@@ -97,12 +97,27 @@
 				margin-left: 100px;
 			}
 		}
+
+		a {
+			color: #007bff;
+			text-decoration: none;
+
+			&.card__suhu--active {
+				color: #333;
+				pointer-events: none;
+			}
+
+			&:hover {
+				color: #0056b3;
+			}
+		}
 	}
 
 	&__secondary table {
 		width: 100%;
 		border-collapse: collapse;
 		margin-top: 1.5rem;
+		line-height: 1.3rem;
 	}
 
 	&__secondary table tr td,

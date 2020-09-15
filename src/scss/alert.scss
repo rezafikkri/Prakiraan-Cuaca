@@ -1,0 +1,38 @@
+/* alert */
+.alert {
+	position: fixed;
+	z-index: 10;
+	background-color: #ffff96;
+	border: 1px solid #f4f464;
+	top: 10px;
+	border-radius: $border-radius;
+	padding: $padding;
+	font-family: open_sanssemibold, Arial, sans-serif;
+	min-width: 25%;
+	box-shadow: 0 2px 5px rgba(0,0,0,.05);
+	display: none;
+
+	&--d-flex {
+		display: flex;
+	}
+
+	&__text {
+		flex: 1;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	&__action {
+		flex: 0 0 30px;
+		font-weight: bold;
+		font-size: 1.1rem;
+		text-align: right;
+
+		a {
+			color: #cacc69;
+			text-decoration: none;
+		}
+	}
+}

@@ -6,7 +6,7 @@ export default {
 	input: 'src/js/cuaca.js',
 	output: [{
 		file: 'dist/js/cuaca.js',
-		format: 'amd',
+		format: 'iife',
 		banner: `/*!
  * CV Reza v2
  * Copyright (c) 2020 Reza Sariful Fikri
@@ -22,6 +22,8 @@ export default {
 	}],
 	plugins: [
 		resolve(),
-		babel({ babelHelpers: "bundled" })
+		babel({ 
+			babelHelpers: "bundled"
+		})
 	]
 }

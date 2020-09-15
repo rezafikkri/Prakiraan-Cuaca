@@ -3,10 +3,15 @@
 	position: relative;
 	border: $border-gray;
 	border-radius: $border-radius;
+
+	-webkit-transition: .2s ease-in-out;
+	-o-transition: .2s ease-in-out;
 	transition: .2s ease-in-out;
 
 	&:hover {
 		z-index: 1;
+		
+		-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.12);
 		box-shadow: 0 5px 10px rgba(0,0,0,.12);
 	}
 
@@ -48,6 +53,7 @@
 		padding-right: 15px;
 
 		-webkit-appearance: none;
+		-moz-appearance: none;
 		appearance: none;
 		background: url('data:image/svg+xml,<svg version="1.1" viewBox="0 0 16 16" fill="%23565656" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>');
 		background-repeat: no-repeat;
@@ -61,18 +67,33 @@
 	}
 
 	&__status {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
 		justify-content: center;
+
 		margin-top: 1.5rem;
 
 		@media (max-width: 365px) {
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
 			flex-direction: column;
+
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 		}
 	}
 
 	&__icon {
+		-webkit-box-flex: 1;
+		-ms-flex: 1;
 		flex: 1;
+
 		text-align: right;
 		padding: 5px;
 
@@ -84,7 +105,10 @@
 	}
 
 	&__suhu {
+		-webkit-box-flex: 1.1;
+		-ms-flex: 1.1;
 		flex: 1.1;
+
 		text-align: left;
 		padding: 9px 5px;
 

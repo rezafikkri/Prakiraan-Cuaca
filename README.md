@@ -6,7 +6,7 @@
 ![Pandangan Islam mengenai Prakiraan Cuaca](https://konsultasisyariah.com/17840-ramalan-cuaca-haram.html)
 
 ### Demo
-Video: https://youtu.be/lPPbCAoAmHo
+Video: https://youtu.be/5MnG1cJUVi4
 
 ### Fitur
 - Melihat Prakiraan Cuaca yang ada diseluruh Provinsi dan Kabupaten atau Kota - Kota besar di Indonesia
